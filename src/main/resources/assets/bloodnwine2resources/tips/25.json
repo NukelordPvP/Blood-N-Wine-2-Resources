@@ -1,0 +1,11 @@
+{
+	"tip": {
+		"translate": "tips.tip.25"
+	},
+
+	"conditions": [{
+		"type": "forge:mod_loaded",
+		"modid": "bloodnwine2resources"
+	}],
+	"text": "This tip is only shown when bloodnwine2resources is loaded."
+}
