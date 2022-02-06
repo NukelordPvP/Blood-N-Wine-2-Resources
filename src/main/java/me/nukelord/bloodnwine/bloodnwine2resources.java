@@ -43,7 +43,7 @@ public class bloodnwine2resources
     }
 */
 
-    @SubscribeEvent
+/*    @SubscribeEvent
     public void onChat(final ClientChatEvent event) {
         LOGGER.warn(event.getMessage());
 
@@ -62,5 +62,5 @@ public class bloodnwine2resources
             LOGGER.error(stringBuilder);
             //map.clear();
         }
-    }
+    }*/
 }
