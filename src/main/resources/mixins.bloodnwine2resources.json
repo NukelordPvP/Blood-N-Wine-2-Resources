@@ -2,9 +2,10 @@
   "required": true,
   "compatibilityLevel": "JAVA_8",
   "mixinPriority": 1002,
-  "package": "me.nukelord.bloodnwine.resources.mixins",
-  "refmap": "me.nukelord.bloodnwine.resources.refmap.json",
+  "package": "me.nukelord.bloodnwine.mixins",
+  "refmap": "mixins.bloodnwine2resources.refmap.json",
   "mixins": [
-
+    "MixinNetworkManager",
+    "MixinEnderPearlEntity"
   ]
 }

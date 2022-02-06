@@ -20,12 +20,17 @@ apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
 
 version = '0.3'
-group = 'me.nukelord.bloodnwine.resources' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = 'me.nukelord.bloodnwine' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'bloodnwine2resources'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(8)
 compileJava {
     [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+}
+
+mixin {
+    add sourceSets.main, 'mixins.bloodnwine2resources.refmap.json'
+    config 'mixins.bloodnwine2resources.json'
 }
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
@@ -43,7 +48,7 @@ minecraft {
     mappings channel: 'official', version: '1.16.5'
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
     
-    // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
     runs {
         client {
@@ -55,6 +60,8 @@ minecraft {
             // "REGISTRIES": For firing of registry events.
             // "REGISTRYDUMP": For getting the contents of all registries.
             property 'forge.logging.markers', 'REGISTRIES'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
 
             // Recommended logging level for the console
             // You can set various levels here.
@@ -72,6 +79,8 @@ minecraft {
             workingDirectory project.file('run')
 
             property 'forge.logging.markers', 'REGISTRIES'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
 
             // https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
             property 'forge.logging.console.level', 'debug'
@@ -115,10 +124,6 @@ dependencies {
 
 }
 
-mixin {
-    add sourceSets.main, 'mixins.bloodnwine2resources.refmap.json'
-    config 'mixins.bloodnwine2resources.json'
-}
 
 // Example for how to get properties into the manifest for reading by the runtime..
 jar {
@@ -145,16 +150,3 @@ jar {
 jar.finalizedBy('reobfJar') 
 // However if you are in a multi-project build, dev time needs unobfed jar files, so you can delay the obfuscation until publishing by doing
 //publish.dependsOn('reobfJar')
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            artifact jar
-        }
-    }
-    repositories {
-        maven {
-            url "file:///${project.projectDir}/mcmodsrepo"
-        }
-    }
-}
