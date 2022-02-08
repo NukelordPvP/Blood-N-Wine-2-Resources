@@ -5,7 +5,8 @@
   "package": "me.nukelord.bloodnwine.mixins",
   "refmap": "mixins.bloodnwine2resources.refmap.json",
   "mixins": [
+    "MixinEnderPearlEntity",
     "MixinNetworkManager",
-    "MixinEnderPearlEntity"
+    "MixinTrackedEntity"
   ]
 }
