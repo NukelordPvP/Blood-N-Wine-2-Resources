@@ -5,8 +5,12 @@
   "package": "me.nukelord.bloodnwine.mixins",
   "refmap": "mixins.bloodnwine2resources.refmap.json",
   "mixins": [
+    "MixinDragonFightManager",
+    "MixinEnderDragonEntity",
     "MixinEnderPearlEntity",
-    "MixinNetworkManager",
-    "MixinTrackedEntity"
+    "MixinEndSpikeFeature",
+    "MixinLandingApproachPhase",
+    "MixinLandingPhase",
+    "MixinNetworkManager"
   ]
 }
